@@ -29,7 +29,7 @@ export default class JdbcDriver<T extends ConnectionType> extends Drivers<T> imp
         this.type = type;
         if (!jinst.isJvmCreated()) {
             jinst.addOption('-Xrs');
-            jinst.setupClasspath([path.join(__dirname, this.driverPath)]);
+            jinst.setupClasspath([path.join(process.cwd(), this.driverPath)]);
         }
         const connection = new jdbc(this.get_config())
         JdbcDriver.connection.set(this.type, connection)
